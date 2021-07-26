@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <title>Document</title>
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(e) {
+
+        var miForm = document.getElementById('miForm');
+        miForm.onsubmit = function(e) {
+            let reques = new XMLHttpRequest();
+            e.preventDefault();
+            let formData = new FormData(this);
+            let jsonData = {};
+            for (var [k, v] of formData) {
+                jsonData[k] = v;
+            }
+            console.log(jsonData);
+            let url = "http://localhost:8080/PracticaDocker-0.0.1-SNAPSHOT/users";
+            reques.open("POST", url, true);
+            reques.setRequestHeader("Content-Type", "application/json");
+
+            let data = JSON.stringify(jsonData);
+            reques.send(data)
+
+
+
+        }
+
+    });
+</script>
+
+<body>
+
+
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>Regitrar Usuarios</p>
+        </div>
+
+
+
+        <div class="form-content">
+
+            <form class="row" id="miForm">
+
+                <header class="heading"> Registro-Usuario</header>
+                <hr></hr>
+                <!---Form starting---->
+                <div class="row ">
+                    <!--- For Name---->
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label class="firstname">Nombre :</label> </div>
+                            <div class="col-xs-8">
+                                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="form-control ">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label class="lastname">Direccion :</label></div>
+                            <div class="col-xs-8">
+                                <input type="text" name="direccion" id="direccion" placeholder="Ingrese su direccion" class="form-control last">
+                            </div>
+                        </div>
+                    </div>
+                    <!-----For email---->
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label class="mail">Email :</label></div>
+                            <div class="col-xs-8">
+                                <input type="text" name="correo" id="correo" placeholder="Ingrese su correo" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <!-----For Password and confirm password---->
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label class="pass">Contraseña :</label></div>
+                            <div class="col-xs-8">
+                                <input type="text" name="contrasenia" id="contrasenia" placeholder="Ingrese su contraseña" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!-----------For Phone number-------->
+
+                    <div class="col-sm-12">
+                        <br>
+                        <input type="submit" class="btn btn-warning" value="Guardar" />
+                    </div>
+                </div>
+
+        </form>
+    </div>
+    <form class="row" action="http://localhost:8080/PracticaDocker-0.0.1-SNAPSHOT/users" method="get">
+        <div class="col-md-4">
+            <input type="submit" class="btn btn-warning" value="Listar" />
+        </div>
+    </form>
+</div>
+</div>
+
+</body>
+
+
+</html>
